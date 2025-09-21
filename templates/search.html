@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Search Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      letter-spacing: -1px;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
+    form {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    form input[type="text"] {
+      flex: 1 1 220px;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      transition: background 0.3s;
+    }
+
+    form input[type="text"]::placeholder {
+      color: #ddd;
+    }
+
+    form input[type="text"]:focus {
+      background: rgba(255,255,255,0.25);
+    }
+
+    form input[type="submit"] {
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    form input[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .result-container {
+      width: 100%;
+      max-width: 900px;
+      margin-top: 40px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .result-container h2 {
+      padding: 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+    }
+
+    thead {
+      background: rgba(255,255,255,0.1);
+    }
+
+    th, td {
+      text-align: center;
+      padding: 14px 10px;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>게임 전적 검색</h1>
+  <form action="/search" method="post">
+    <input type="text" name="gameName" placeholder="게임 이름">
+    <input type="text" name="tagLine" placeholder="태그라인">
+    <input type="submit" value="검색">
+  </form>
+
+  <div class="result-container">
+    <h2>결과</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>챔피언</th>
+          <th>킬</th>
+          <th>데스</th>
+          <th>어시스트</th>
+          <th>가한 피해량</th>
+          <th>받은 피해량</th>
+          <th>와드 설치</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% if result %}
+        {% for value in result %}
+        <tr>
+          <td>{{value['championName']}}</td>
+          <td>{{value['kills']}}</td>
+          <td>{{value['deaths']}}</td>
+          <td>{{value['assists']}}</td>
+          <td>{{value['totalDamageDealtToChampions']}}</td>
+          <td>{{value['totalDamageTaken']}}</td>
+          <td>{{value['wardsPlaced']}}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

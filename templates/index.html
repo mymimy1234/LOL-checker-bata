@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    </head>
+        <meta charset="utf-8">
+        </head>
+    <body>
+        <form action="/home" method="post">
+            <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+            <input type="submit" value="제출">
+        </form>
+    </body>
+    <div>결과 :</div>
+    {% if result %}
+        {%for value in result %}
+        <p>{{value}}</p>
+        {% endfor %}
+    {% endif %}
+
+
+
+
+    <div>
+        <label>딕셔너리<label>
+        {% if dic %}
+        <strong>이름: {{dic['name']}}</strong>
+        <mark>나이: {{dic['age']}}</mark>
+        <ul>
+            {%for value in dic['hobby'] %}
+            <li>{{value}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+
+    </div>
+</html>
