@@ -125,6 +125,7 @@
 <body>
 
   <h1>게임 전적 검색</h1>
+
   <form action="/search" method="post">
     <input type="text" name="gameName" placeholder="게임 이름">
     <input type="text" name="tagLine" placeholder="태그라인">
@@ -132,7 +133,7 @@
   </form>
 
   <div class="result-container">
-    <h2>결과</h2>
+    <h2>최근 10게임 결과</h2>
     <table>
       <thead>
         <tr>
@@ -146,19 +147,19 @@
         </tr>
       </thead>
       <tbody>
-      {% if result %}
-        {% for value in result %}
-        <tr>
-          <td>{{value['championName']}}</td>
-          <td>{{value['kills']}}</td>
-          <td>{{value['deaths']}}</td>
-          <td>{{value['assists']}}</td>
-          <td>{{value['totalDamageDealtToChampions']}}</td>
-          <td>{{value['totalDamageTaken']}}</td>
-          <td>{{value['wardsPlaced']}}</td>
-        </tr>
-        {% endfor %}
-      {% endif %}
+        {% if result %}
+          {% for value in result[:10] %}
+            <tr>
+              <td>{{ value['championName'] }}</td>
+              <td>{{ value['kills'] }}</td>
+              <td>{{ value['deaths'] }}</td>
+              <td>{{ value['assists'] }}</td>
+              <td>{{ value['totalDamageDealtToChampions'] }}</td>
+              <td>{{ value['totalDamageTaken'] }}</td>
+              <td>{{ value['wardsPlaced'] }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
       </tbody>
     </table>
   </div>

@@ -2,6 +2,7 @@ import requests
 
 API_KEY = "RGAPI-7e1ccdeb-ca17-4f2e-9104-2011be04e8b9"
 ASIA_DOMAIN = "https://asia.api.riotgames.com"
+KOREA_DOMAIN="https://kr.api.riotgames.com"
 QUERY = "?api_key="+API_KEY
 def getPuuidByGameNameTagLine(gameName, tagLine):
     path = "/riot/account/v1/accounts/by-riot-id/"+gameName + "/" + tagLine
