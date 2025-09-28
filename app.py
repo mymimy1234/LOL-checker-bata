@@ -5,6 +5,10 @@ from service.getTierData import getTier
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET','POST'])
+def home():
+    return render_template("home.html")
+
 @app.route('/search', methods=['GET','POST'])
 def search():
     if request.method == 'POST':

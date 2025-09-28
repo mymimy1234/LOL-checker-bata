@@ -51,7 +51,9 @@ def getMatchData(gameName, tagLine):
     TotalDamageTaken = info['participants']
     TotalTime = info['gameDuration']
     print("총 게임 시간:", TotalTime//60, "분", TotalTime%60, "초")
+    visionScore=info['participants']
     WardPlaced = info['participants']
+    WardDestroyed = info['participants']
     for i in range(10):
         item = {}
         item['championName'] = participants[i]['championName']
@@ -60,7 +62,9 @@ def getMatchData(gameName, tagLine):
         item['assists'] = KDA[i]['assists']
         item['totalDamageDealtToChampions'] = TotalDamageDealtToChampions[i]['totalDamageDealtToChampions']
         item['totalDamageTaken'] = TotalDamageTaken[i]['totalDamageTaken']
+        item['visionScore'] = visionScore[i]['visionScore']
         item['wardsPlaced'] = WardPlaced[i]['wardsPlaced']
+        item['wardsDestroyed'] = WardDestroyed[i]['wardsKilled']
         result.append(item)
     return result, puuid
     

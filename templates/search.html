@@ -28,24 +28,20 @@
       <thead>
         <tr>
           <th>챔피언</th>
-          <th>킬</th>
-          <th>데스</th>
-          <th>어시스트</th>
+          <th>킬/데스/어시스트</th>
           <th>가한 피해량</th>
           <th>받은 피해량</th>
-          <th>와드 설치</th>
+          <th>시야 점수 = 설치/해체</th>
         </tr>
       </thead>
       <tbody>
         {% for match in result %}
           <tr>
             <td>{{ match.championName }}</td>
-            <td>{{ match.kills }}</td>
-            <td>{{ match.deaths }}</td>
-            <td>{{ match.assists }}</td>
+            <td>{{ match.kills }}/{{ match.deaths }}/{{ match.assists }}</td>
             <td>{{ match.totalDamageDealtToChampions }}</td>
             <td>{{ match.totalDamageTaken }}</td>
-            <td>{{ match.wardsPlaced }}</td>
+            <td>{{match.visionScore}}={{ match.wardsPlaced }}/{{match.wardsDestroyed}}</td>
           </tr>
         {% endfor %}
       </tbody>
