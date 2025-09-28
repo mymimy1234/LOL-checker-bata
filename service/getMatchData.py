@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "RGAPI-7e1ccdeb-ca17-4f2e-9104-2011be04e8b9"
+API_KEY = "RGAPI-56810c26-b2ee-4374-b120-47a89ea6c671"
 ASIA_DOMAIN = "https://asia.api.riotgames.com"
 KOREA_DOMAIN="https://kr.api.riotgames.com"
 QUERY = "?api_key="+API_KEY
@@ -13,7 +13,9 @@ def getPuuidByGameNameTagLine(gameName, tagLine):
         exit()
     response = response.json()
     puuid = response['puuid']
+    print(puuid)
     return puuid
+
 
 
 def getMatchListByPuuid(puuid):
@@ -60,7 +62,7 @@ def getMatchData(gameName, tagLine):
         item['totalDamageTaken'] = TotalDamageTaken[i]['totalDamageTaken']
         item['wardsPlaced'] = WardPlaced[i]['wardsPlaced']
         result.append(item)
-    return result
+    return result, puuid
     
 """
     for p in participants:
@@ -84,6 +86,11 @@ def getMatchData(gameName, tagLine):
             img.show()
         else:
             print(f"이미지 로딩 실패")
+
+
+
+
+            pDRI_rmEXKfJpSagCPi_nawWiv3CwSjDmNtu6WJ6ISzvmdJeXiDtWoYUvOltYf_TMPDnwJD7sGI55A
 """
 
 
