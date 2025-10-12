@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "RGAPI-56810c26-b2ee-4374-b120-47a89ea6c671"
+API_KEY = "RGAPI-dd3c330f-8904-4b7e-82e9-6b360541b34b"
 ASIA_DOMAIN = "https://asia.api.riotgames.com"
 KOREA_DOMAIN="https://kr.api.riotgames.com"
 QUERY = "?api_key="+API_KEY
@@ -8,6 +8,7 @@ def getPuuidByGameNameTagLine(gameName, tagLine):
     path = "/riot/account/v1/accounts/by-riot-id/"+gameName + "/" + tagLine
     url = ASIA_DOMAIN + path + QUERY
     response = requests.get(url=url)
+    print(response.text)
     if response.status_code != 200:
         print("사용자 정보를 불러오지 못했습니다.")
         exit()
