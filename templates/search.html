@@ -31,7 +31,7 @@
           <th>킬/데스/어시스트</th>
           <th>가한 피해량</th>
           <th>받은 피해량</th>
-          <th>시야 점수 = 설치/해체</th>
+          <th>시야 점수  설치/해체</th>
         </tr>
       </thead>
       <tbody>
@@ -41,7 +41,7 @@
             <td>{{ match.kills }}/{{ match.deaths }}/{{ match.assists }}</td>
             <td>{{ match.totalDamageDealtToChampions }}</td>
             <td>{{ match.totalDamageTaken }}</td>
-            <td>{{match.visionScore}}={{ match.wardsPlaced }}/{{match.wardsDestroyed}}</td>
+            <td>{{match.visionScore}} {{ match.wardsPlaced }}/{{match.wardsDestroyed}}</td>
           </tr>
         {% endfor %}
       </tbody>

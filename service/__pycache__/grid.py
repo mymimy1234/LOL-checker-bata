@@ -2,7 +2,7 @@ import requests
 import time
 import pandas as pd
 
-API_KEY = "RGAPI-5f8a936d-e0c9-4978-a505-06e10480bb8f"
+API_KEY = "RGAPI-c9e81776-87c5-4c55-8077-bf6274769316"
 ASIA_DOMAIN = "https://asia.api.riotgames.com"
 KR_DOMAIN = "https://kr.api.riotgames.com"
 PATH = "/lol/league/v4/entries/"
@@ -18,6 +18,7 @@ def get_puuids_by_tier(tier):
     try:
         response = requests.get(url=url)
         response = response.json()
+        print(response)
         for data in response:
             puuids.append(data['puuid'])
     except Exception as e:
@@ -45,8 +46,14 @@ def get_gold_info_by_puuids(puuids):
         if not match_ids:
             continue
         
-        match_id = match_ids[0]
-        
+        try:
+            match_id = match_ids[0]
+        except KeyError:
+            print("match_ids 리스트가 비어 있습니다.")
+            match_id = None  # 또는 다른 기본값
+
+
+
         # 매치 상세 정보
         path = f"/lol/match/v5/matches/{match_id}"
         query = f"?api_key={API_KEY}"
@@ -93,11 +100,12 @@ def get_gold_info_by_puuids(puuids):
 
 final_df = pd.DataFrame()
 
-for i in range(4):
-    puuids = get_puuids_by_tier(TIER[i])
+for tier in TIER:
+    puuids = get_puuids_by_tier(tier)
     golds = get_gold_info_by_puuids(puuids)
     tier_df = pd.DataFrame(golds)
-    tier_df['tier'] = TIER[i]
+    tier_df['tier'] = tier
     final_df = pd.concat([final_df, tier_df], ignore_index=True)
+
 
 final_df.to_excel('golds_by_tier.xlsx', index=False)
